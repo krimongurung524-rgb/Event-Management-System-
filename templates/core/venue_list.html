@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+
+{% block title %}Venues{% endblock %}
+
+{% block content %}
+
+<h1>Venues</h1>
+
+<div class="grid">
+
+{% for venue in venues %}
+
+<div class="card">
+
+    {% if venue.image %}
+        <img src="{{ venue.image.url }}" alt="{{ venue.name }}">
+    {% endif %}
+
+    <h2>{{ venue.name }}</h2>
+
+    <p>Address: {{ venue.address }}</p>
+
+    <p>Capacity: {{ venue.capacity }}</p>
+
+    <br>
+
+    <a href="{% url 'venue_detail' venue.pk %}" class="btn">
+        View Venue
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No venues available.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
