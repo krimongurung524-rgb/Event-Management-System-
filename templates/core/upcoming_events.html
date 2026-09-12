@@ -1,0 +1,49 @@
+{% extends "core/base.html" %}
+
+{% block title %}Upcoming Events{% endblock %}
+
+{% block content %}
+
+<h1>Upcoming Events</h1>
+
+<div class="grid">
+
+{% for event in events %}
+
+<div class="card">
+
+    {% if event.image %}
+        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+    {% endif %}
+
+    <h2>{{ event.title }}</h2>
+
+    <p>{{ event.description|truncatewords:20 }}</p>
+
+    <p>
+        <strong>Date:</strong>
+        {{ event.event_date }}
+    </p>
+
+    <p>
+        <strong>Price:</strong>
+        Rs. {{ event.price }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'event_detail' event.pk %}" class="btn">
+        Details
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No upcoming events.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
