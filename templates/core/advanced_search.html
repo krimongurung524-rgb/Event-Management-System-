@@ -1,0 +1,70 @@
+{% extends "core/base.html" %}
+
+{% block title %}Advanced Search{% endblock %}
+
+{% block content %}
+
+<h1>Advanced ORM Search</h1>
+
+<div class="card">
+
+<form method="GET">
+
+    <label>Lookup Type</label>
+
+    <select name="type">
+
+        <option value="exact">exact</option>
+        <option value="contains">contains</option>
+        <option value="icontains">icontains</option>
+        <option value="startswith">startswith</option>
+        <option value="istartswith">istartswith</option>
+        <option value="endswith">endswith</option>
+        <option value="iendswith">iendswith</option>
+        <option value="regex">regex</option>
+        <option value="iregex">iregex</option>
+
+    </select>
+
+    <label>Search Value</label>
+
+    <input
+        type="text"
+        name="value"
+        value="{{ value }}"
+        placeholder="Enter search value"
+    >
+
+    <button type="submit" class="btn">
+        Search
+    </button>
+
+</form>
+
+</div>
+
+<h2>Results</h2>
+
+<div class="grid">
+
+{% for event in events %}
+
+<div class="card">
+
+    <h3>{{ event.title }}</h3>
+
+    <p>{{ event.description }}</p>
+
+    <p>{{ event.event_date }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No results found.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
