@@ -1,0 +1,138 @@
+{% extends "core/base.html" %}
+
+{% block title %}Create Event{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>Create New Event</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label>Event Title</label>
+        <input
+            type="text"
+            name="title"
+            placeholder="Enter event title"
+            required
+        >
+
+        <label>Description</label>
+        <textarea
+            name="description"
+            placeholder="Enter event description"
+            required
+        ></textarea>
+
+        <label>Start Date & Time</label>
+        <input
+            type="datetime-local"
+            name="start_datetime"
+            required
+        >
+
+        <label>End Date & Time</label>
+        <input
+            type="datetime-local"
+            name="end_datetime"
+            required
+        >
+
+        <label>Price</label>
+        <input
+            type="number"
+            name="price"
+            step="0.01"
+            min="0"
+            placeholder="Enter ticket price"
+            required
+        >
+
+        <label>Total Seats</label>
+        <input
+            type="number"
+            name="total_seats"
+            min="1"
+            placeholder="Enter total seats"
+            required
+        >
+
+        <label>Status</label>
+        <select name="status" required>
+
+            <option value="upcoming">Upcoming</option>
+            <option value="ongoing">Ongoing</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+
+        </select>
+
+        <label>Category</label>
+        <select name="category" required>
+
+            <option value="">Select Category</option>
+
+            {% for category in categories %}
+
+                <option value="{{ category.id }}">
+                    {{ category.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label>Organizer</label>
+        <select name="organizer" required>
+
+            <option value="">Select Organizer</option>
+
+            {% for organizer in organizers %}
+
+                <option value="{{ organizer.id }}">
+                    {{ organizer.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label>Tags</label>
+        <select name="tags" multiple>
+
+            {% for tag in tags %}
+
+                <option value="{{ tag.id }}">
+                    {{ tag.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label>Event Image</label>
+        <input
+            type="file"
+            name="image"
+            accept="image/*"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit" class="btn btn-success">
+            Create Event
+        </button>
+
+        <a href="{% url 'event_list' %}" class="btn">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

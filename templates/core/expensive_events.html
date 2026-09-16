@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+
+{% block title %}Expensive Events{% endblock %}
+
+{% block content %}
+
+<h1>Expensive Events</h1>
+
+<p>
+    Events with price greater than Rs. 1000.
+</p>
+
+<br>
+
+<div class="grid">
+
+{% for event in events %}
+
+<div class="card">
+
+    <h2>{{ event.title }}</h2>
+
+    <p>{{ event.description }}</p>
+
+    <p>
+        <strong>Price:</strong>
+        Rs. {{ event.price }}
+    </p>
+
+    <p>
+        <strong>Date:</strong>
+        {{ event.event_date }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'event_detail' event.pk %}" class="btn">
+        View Event
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No expensive events found.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

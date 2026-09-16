@@ -1,0 +1,56 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    {% if event.image %}
+        <img src="{{ event.image.url }}" alt="{{ event.title }}">
+    {% endif %}
+
+    <h1>{{ event.title }}</h1>
+
+    <p>{{ event.description }}</p>
+
+    <hr><br>
+
+    <p>
+        <strong>Date & Time:</strong>
+        {{ event.event_date }}
+    </p>
+
+    <p>
+        <strong>Price:</strong>
+        Rs. {{ event.price }}
+    </p>
+
+    <p>
+        <strong>Category:</strong>
+        {{ event.category }}
+    </p>
+
+    <p>
+        <strong>Organizer:</strong>
+        {{ event.organizer }}
+    </p>
+
+    <p>
+        <strong>Venue:</strong>
+        {{ event.venue }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'event_update' event.pk %}" class="btn">
+        Edit Event
+    </a>
+
+    <a href="{% url 'event_delete' event.pk %}" class="btn btn-danger">
+        Delete Event
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block title %}Organizer Details{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    {% if organizer.image %}
+        <img src="{{ organizer.image.url }}" alt="{{ organizer.name }}">
+    {% endif %}
+
+    <h1>{{ organizer.name }}</h1>
+
+    <p>Email: {{ organizer.email }}</p>
+    <p>Phone: {{ organizer.phone }}</p>
+
+</div>
+
+<h2>Organizer Events</h2>
+
+<div class="grid">
+
+{% for event in events %}
+
+<div class="card">
+
+    <h3>{{ event.title }}</h3>
+
+    <p>{{ event.event_date }}</p>
+
+    <a href="{% url 'event_detail' event.pk %}" class="btn">
+        View Event
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No events found.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

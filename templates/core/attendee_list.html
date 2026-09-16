@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+
+{% block title %}Attendees{% endblock %}
+
+{% block content %}
+
+<h1>Attendees</h1>
+
+<div class="grid">
+
+{% for attendee in attendees %}
+
+<div class="card">
+
+    {% if attendee.image %}
+        <img src="{{ attendee.image.url }}" alt="{{ attendee.name }}">
+    {% endif %}
+
+    <h2>{{ attendee.name }}</h2>
+
+    <p>Email: {{ attendee.email }}</p>
+
+    <p>Phone: {{ attendee.phone }}</p>
+
+    <p>
+        Event:
+        {{ attendee.event.title }}
+    </p>
+
+    <p>
+        Registered:
+        {{ attendee.registered_at }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'attendee_detail' attendee.pk %}" class="btn">
+        View Details
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No attendees available.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

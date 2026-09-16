@@ -1,0 +1,45 @@
+{% extends "core/base.html" %}
+
+{% block title %}Past Events{% endblock %}
+
+{% block content %}
+
+<h1>Past Events</h1>
+
+<div class="grid">
+
+{% for event in events %}
+
+<div class="card">
+
+    <h2>{{ event.title }}</h2>
+
+    <p>{{ event.description|truncatewords:20 }}</p>
+
+    <p>
+        <strong>Event Date:</strong>
+        {{ event.event_date }}
+    </p>
+
+    <p>
+        <strong>Price:</strong>
+        Rs. {{ event.price }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'event_detail' event.pk %}" class="btn">
+        View
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No past events.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

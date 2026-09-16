@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+
+<h1>Event Categories</h1>
+
+<div class="grid">
+
+{% for category in categories %}
+
+<div class="card">
+
+    {% if category.image %}
+        <img src="{{ category.image.url }}" alt="{{ category.name }}">
+    {% endif %}
+
+    <h2>{{ category.name }}</h2>
+
+    <p>{{ category.description }}</p>
+
+    <br>
+
+    <a href="{% url 'category_detail' category.pk %}" class="btn">
+        View Category
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No categories available.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+
+{% block title %}Attendee Details{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    {% if attendee.image %}
+        <img src="{{ attendee.image.url }}" alt="{{ attendee.name }}">
+    {% endif %}
+
+    <h1>{{ attendee.name }}</h1>
+
+    <p><strong>Email:</strong> {{ attendee.email }}</p>
+
+    <p><strong>Phone:</strong> {{ attendee.phone }}</p>
+
+    <p>
+        <strong>Event:</strong>
+        {{ attendee.event.title }}
+    </p>
+
+    <p>
+        <strong>Registered:</strong>
+        {{ attendee.registered_at }}
+    </p>
+
+</div>
+
+{% endblock %}

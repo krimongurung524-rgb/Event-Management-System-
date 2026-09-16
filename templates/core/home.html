@@ -1,0 +1,68 @@
+{% extends "core/base.html" %}
+
+{% block title %}Home - Event Management System{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <h1>Welcome to Event Management System</h1>
+    <p>
+        Discover, manage and organize different events easily.
+    </p>
+
+    <br>
+
+    <a href="{% url 'event_list' %}" class="btn">
+        View Events
+    </a>
+
+    <a href="{% url 'event_create' %}" class="btn btn-success">
+        Create Event
+    </a>
+</div>
+
+<h2>Latest Events</h2>
+
+<div class="grid">
+
+    {% for event in events %}
+
+    <div class="card">
+
+        {% if event.image %}
+            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+        {% endif %}
+
+        <h3>{{ event.title }}</h3>
+
+        <p>{{ event.description|truncatewords:20 }}</p>
+
+        <p>
+            <strong>Date:</strong>
+            {{ event.event_date }}
+        </p>
+
+        <p>
+            <strong>Price:</strong>
+            Rs. {{ event.price }}
+        </p>
+
+        <br>
+
+        <a href="{% url 'event_detail' event.pk %}" class="btn">
+            View Details
+        </a>
+
+    </div>
+
+    {% empty %}
+
+    <div class="card">
+        <p>No events available yet.</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

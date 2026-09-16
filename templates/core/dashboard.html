@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<div class="grid">
+
+    <div class="card">
+        <h2>{{ total_events }}</h2>
+        <p>Total Events</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ total_categories }}</h2>
+        <p>Total Categories</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ total_venues }}</h2>
+        <p>Total Venues</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ total_attendees }}</h2>
+        <p>Total Attendees</p>
+    </div>
+
+</div>
+
+{% endblock %}

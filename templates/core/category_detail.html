@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+
+{% block title %}Category Details{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>{{ category.name }}</h1>
+
+    <p>{{ category.description }}</p>
+
+</div>
+
+<h2>Events in this Category</h2>
+
+<div class="grid">
+
+{% for event in events %}
+
+<div class="card">
+
+    <h3>{{ event.title }}</h3>
+
+    <p>{{ event.event_date }}</p>
+
+    <a href="{% url 'event_detail' event.pk %}" class="btn">
+        View
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No events in this category.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

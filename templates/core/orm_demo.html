@@ -1,0 +1,246 @@
+{% extends "core/base.html" %}
+
+{% block title %}Advanced ORM Demo{% endblock %}
+
+{% block content %}
+
+<h1>Advanced ORM Demonstration</h1>
+
+<div class="card">
+
+    <h2>ORM Statistics</h2>
+
+    <p>
+        <strong>Total Events:</strong>
+        {{ statistics.total_events }}
+    </p>
+
+    <p>
+        <strong>Average Price:</strong>
+        {{ statistics.average_price }}
+    </p>
+
+    <p>
+        <strong>Total Price:</strong>
+        {{ statistics.total_price }}
+    </p>
+
+</div>
+
+
+<div class="card">
+
+    <h2>Exact Lookup</h2>
+
+    {% for event in exact_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Contains Lookup</h2>
+
+    {% for event in contains_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Case-Insensitive Contains</h2>
+
+    {% for event in icontains_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Starts With</h2>
+
+    {% for event in startswith_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Case-Insensitive Starts With</h2>
+
+    {% for event in istartswith_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Ends With</h2>
+
+    {% for event in endswith_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Case-Insensitive Ends With</h2>
+
+    {% for event in iendswith_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Greater Than</h2>
+
+    {% for event in gt_events %}
+        <p>{{ event.title }} - Rs. {{ event.price }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Greater Than or Equal</h2>
+
+    {% for event in gte_events %}
+        <p>{{ event.title }} - Rs. {{ event.price }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Less Than</h2>
+
+    {% for event in lt_events %}
+        <p>{{ event.title }} - Rs. {{ event.price }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Less Than or Equal</h2>
+
+    {% for event in lte_events %}
+        <p>{{ event.title }} - Rs. {{ event.price }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Range Lookup</h2>
+
+    {% for event in range_events %}
+        <p>{{ event.title }} - Rs. {{ event.price }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Regex Lookup</h2>
+
+    {% for event in regex_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Case-Insensitive Regex</h2>
+
+    {% for event in iregex_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Q Object Search</h2>
+
+    {% for event in q_events %}
+        <p>{{ event.title }}</p>
+    {% empty %}
+        <p>No result.</p>
+    {% endfor %}
+
+</div>
+
+
+<div class="card">
+
+    <h2>Category Event Count</h2>
+
+    {% for category in category_event_count %}
+
+        <p>
+            {{ category.name }}
+            —
+            {{ category.total_events }} events
+        </p>
+
+    {% empty %}
+
+        <p>No categories.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

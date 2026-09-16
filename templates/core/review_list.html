@@ -1,0 +1,43 @@
+{% extends "core/base.html" %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+
+<h1>Event Reviews</h1>
+
+<div class="grid">
+
+{% for review in reviews %}
+
+<div class="card">
+
+    <h2>{{ review.reviewer_name }}</h2>
+
+    <p>
+        <strong>Event:</strong>
+        {{ review.event.title }}
+    </p>
+
+    <p>
+        <strong>Rating:</strong>
+        {{ review.rating }}/5
+    </p>
+
+    <p>{{ review.comment }}</p>
+
+    <p>
+        <small>{{ review.created_at }}</small>
+    </p>
+
+</div>
+
+{% empty %}
+
+<p>No reviews available.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

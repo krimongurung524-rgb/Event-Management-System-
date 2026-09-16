@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+
+{% block title %}Organizers{% endblock %}
+
+{% block content %}
+
+<h1>Organizers</h1>
+
+<div class="grid">
+
+{% for organizer in organizers %}
+
+<div class="card">
+
+    {% if organizer.image %}
+        <img src="{{ organizer.image.url }}" alt="{{ organizer.name }}">
+    {% endif %}
+
+    <h2>{{ organizer.name }}</h2>
+
+    <p>Email: {{ organizer.email }}</p>
+    <p>Phone: {{ organizer.phone }}</p>
+
+    <br>
+
+    <a href="{% url 'organizer_detail' organizer.pk %}" class="btn">
+        View Organizer
+    </a>
+
+</div>
+
+{% empty %}
+
+<p>No organizers available.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

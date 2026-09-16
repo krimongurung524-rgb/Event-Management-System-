@@ -1,0 +1,120 @@
+{% extends "core/base.html" %}
+
+{% block title %}Update Event{% endblock %}
+
+{% block content %}
+
+<h1>Update Event</h1>
+
+<div class="card">
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <label>Event Title</label>
+    <input
+        type="text"
+        name="title"
+        value="{{ event.title }}"
+        required
+    >
+
+    <label>Description</label>
+
+    <textarea name="description" rows="5" required>{{ event.description }}</textarea>
+
+    <label>Date & Time</label>
+
+    <input
+        type="datetime-local"
+        name="event_date"
+        value="{{ event.event_date|date:'Y-m-d\TH:i' }}"
+        required
+    >
+
+    <label>Price</label>
+
+    <input
+        type="number"
+        name="price"
+        value="{{ event.price }}"
+        step="0.01"
+        required
+    >
+
+    <label>New Image</label>
+    <input type="file" name="image">
+
+    <label>Category</label>
+
+    <select name="category" required>
+
+        {% for category in categories %}
+
+        <option
+            value="{{ category.id }}"
+            {% if event.category.id == category.id %}selected{% endif %}
+        >
+            {{ category.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label>Organizer</label>
+
+    <select name="organizer" required>
+
+        {% for organizer in organizers %}
+
+        <option
+            value="{{ organizer.id }}"
+            {% if event.organizer.id == organizer.id %}selected{% endif %}
+        >
+            {{ organizer.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label>Venue</label>
+
+    <select name="venue" required>
+
+        {% for venue in venues %}
+
+        <option
+            value="{{ venue.id }}"
+            {% if event.venue.id == venue.id %}selected{% endif %}
+        >
+            {{ venue.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label>Tags</label>
+
+    <select name="tags" multiple>
+
+        {% for tag in tags %}
+            <option value="{{ tag.id }}">
+                {{ tag.name }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+    <button type="submit" class="btn">
+        Update Event
+    </button>
+
+</form>
+
+</div>
+
+{% endblock %}
