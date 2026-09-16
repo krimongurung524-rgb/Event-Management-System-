@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+
+{% block title %}Tags{% endblock %}
+
+{% block content %}
+
+<h1>Event Tags</h1>
+
+<div class="grid">
+
+{% for tag in tags %}
+
+<div class="card">
+
+    <h2>{{ tag.name }}</h2>
+
+    <p>Tag ID: {{ tag.id }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No tags available.</p>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
